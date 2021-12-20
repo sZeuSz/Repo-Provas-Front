@@ -125,7 +125,7 @@ const CardTests = styled.div`
     justify-content: flex-start;
     align-items: center;
     
-    width: 90%;
+    width: 85%;
     min-height: 50px;
     margin: 15px;
     border-radius: 10px;
@@ -173,5 +173,9 @@ const CardTests = styled.div`
     button:active {
         top: 1px;
     }
+    }
+
+    @media(max-width: 834px){
+        width: 80%
     }
 `;

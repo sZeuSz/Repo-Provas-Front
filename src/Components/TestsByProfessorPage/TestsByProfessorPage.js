@@ -42,10 +42,11 @@ export const CardGeneric= styled(Card)`
     justify-content: flex-start;
     align-items: center;
     height: auto;
-    width: 98%;
+    width: 95%;
     margin: 15px 15px;
     min-height: 500px;
     max-width: none;
+    margin: 15px auto;
 
     button{
         position: relative;
