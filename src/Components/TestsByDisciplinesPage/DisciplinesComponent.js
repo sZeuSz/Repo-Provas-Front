@@ -1,38 +1,86 @@
 import styled from 'styled-components';
-import { ButtonChoice, Card } from '../Homepage.js/HomePageStyled';
+import { ButtonChoice } from '../Homepage.js/HomePageStyled';
 import { useState, useEffect, useCallback } from 'react';
-import { getProfessorsTestsRequest } from '../../Services/RepoProvas';
-import { Link } from 'react-router-dom';
+import { getDisciplinesTestsRequest } from '../../Services/RepoProvas';
 
-
-export default function ProfessorsComponent({professor, id}) {
-
-    const [teacherComplete, setTeacherComplete] = useState([professor]);
+export default function DisciplinesComponent({ discipline, id }) {
+    const [disciplineComplete, setDisciplineComplete] = useState([discipline]);
     const [hidden, setHidden] = useState(true);
-    console.log(professor);
+    console.log(discipline);
     console.log(id);
-    const generateProfessors = useCallback(() => {
-    getProfessorsTestsRequest(id)
-      .then((res) => {
-          console.log(res.data);
-          setTeacherComplete([...teacherComplete, res.data]);
+    const generateDisciplines = useCallback(() => {
+    getDisciplinesTestsRequest(id)
+        .then((res) => {
+            console.log("dados", res.data);
+            setDisciplineComplete(res.data);
+            
       })
       .catch((error) => {});
     },[])
 
     useEffect(() => {
-        generateProfessors();
-    }, [generateProfessors])
-    
-    if (!teacherComplete) {
+        generateDisciplines();
+    }, [generateDisciplines])
+
+    if (!disciplineComplete) {
         return null;
     }
 
+    /*<ContainerCategory>
+                            <Period>{t.name}</Period>
+                            <ContainerTests>
+                                {t?.tests.map((t) => {
+                                    return (
+                                        <ContainerInfo target="_blank" href={t.link} rel="noreferrer">
+                                            <Discipline>{t.name}</Discipline>
+                                            <Discipline>{t.discipline.name}</Discipline>
+                                            <Discipline>{t.link}</Discipline>
+                                        </ContainerInfo>
+                                    )
+                                })}
+        </ContainerTests>
+    </ContainerCategory>*/
+    
+        
+    // (teacherComplete[1]?.map((d) => { return d.tests.length }))?.reduce((a, b) => { return a + b }, 0))})
+
     return (
         <ContainerPT>
-        <ButtonChoice onClick={() => setHidden(!hidden)}>{teacherComplete[0]}{console.log(teacherComplete)}({((teacherComplete[1]?.map((d) => { return d.tests.length }))?.reduce((a, b) => { return a + b }, 0))})</ButtonChoice>
-            <CardTests hidden={hidden}>
-                {teacherComplete[1]?.map((t, index) => {
+            {disciplineComplete?.map((discipline) => {
+                return (
+                    <ContainerCategory>
+                        <Period>{discipline?.name}</Period>
+                        <ContainerTests>
+                            {discipline?.tests?.map((discipline) => {
+                                return (
+                                    <ContainerInfo target="_blank" href={discipline.link} rel="noreferrer">
+                                        <Discipline>{discipline?.name}</Discipline>
+                                        <Discipline>{discipline.professor.name}</Discipline>
+                                        <Discipline>{discipline.link}</Discipline>
+                                    </ContainerInfo>
+                                )
+                            })}
+                        </ContainerTests>
+                    </ContainerCategory>
+                )
+            })}
+        </ContainerPT>
+    )
+    return (
+        <ContainerPT>
+            <ContainerCategory>
+                {/* <Discipline>{discipline?.name}</Discipline> */}
+                <ContainerTests>    
+                {discipline.disciplines.map((e) => {
+                    return (
+                        <ButtonChoice>{e.name}</ButtonChoice>
+                    )
+                })}
+                </ContainerTests>
+            {/* <ButtonChoice onClick={() => setHidden(!hidden)}>{discipline.name}{console.log(disciplineComplete)}({((disciplineComplete?.disciplines((d) => { return d.tests.length }))?.reduce((a, b) => { return a + b }, 0))})</ButtonChoice> */}
+            </ContainerCategory>
+            {/* <CardTests hidden={hidden}>
+                {disciplineComplete[1]?.map((t, index) => {
                     return (
                         <ContainerCategory>
                             <Period>{t.name}</Period>
@@ -50,10 +98,13 @@ export default function ProfessorsComponent({professor, id}) {
                         </ContainerCategory>
                     )
                 })}
-            </CardTests>
+            </CardTests> */}
         </ContainerPT>
     )
 }
+const ContainerPeriod = styled.div`
+
+`;
 const Discipline = styled.h2`
     font-size: 18px;
     color: #87CEEB;
