@@ -125,7 +125,7 @@ const CardTests = styled.div`
     justify-content: flex-start;
     align-items: center;
     
-    width: 85%;
+    width: 70%;
     min-height: 50px;
     margin: 15px;
     border-radius: 10px;
