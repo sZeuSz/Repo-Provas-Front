@@ -126,7 +126,7 @@ const CardTests = styled.div`
     justify-content: flex-start;
     align-items: center;
     
-    width: 60%;
+    width: 90%;
     min-height: 50px;
     margin: 15px;
     border-radius: 10px;
@@ -139,6 +139,7 @@ const CardTests = styled.div`
         cursor:pointer;
         margin: 15px 0px;
         transition-duration: 0.4s;
+        text-overflow: ellipsis;
         -webkit-transition-duration: 0.4s; /* Safari */
     }
     button:hover {

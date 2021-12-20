@@ -72,6 +72,8 @@ export const ButtonChoice = styled.button`
     font-weight: 700;
     border-radius: 25px;
     margin: 0 4px;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
     &:hover{
         cursor: pointer;
         filter: brightness(150%);
