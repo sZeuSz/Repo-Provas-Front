@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const URL = 'http://localhost:4000';
+const URL = 'https://repository-tests.herokuapp.com';
 
 export function getProfessorsRequest() {
     return axios.get(`${URL}/professors`);

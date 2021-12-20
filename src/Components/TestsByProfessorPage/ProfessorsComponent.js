@@ -40,7 +40,7 @@ export default function ProfessorsComponent({professor, id}) {
                             <ContainerTests>
                                 {t?.tests.map((t) => {
                                     return (
-                                        <ContainerInfo target="_blank" href='https://qastack.com.br/programming/42914666/react-router-external-link' rel="noreferrer">
+                                        <ContainerInfo target="_blank" href={t.link} rel="noreferrer">
                                             <Discipline>{t.name}</Discipline>
                                             <Discipline>{t.discipline.name}</Discipline>
                                             <Discipline>{t.link}</Discipline>
